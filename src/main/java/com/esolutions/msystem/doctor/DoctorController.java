@@ -2,10 +2,9 @@ package com.esolutions.msystem.doctor;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.print.Doc;
 import java.util.List;
 
 @RestController
@@ -15,13 +14,20 @@ public class DoctorController {
     DoctorService doctorService;
 
     @RequestMapping("/doctors")
-    public List<Doctor> getAllDoctors() {
-        return doctorService.getAllDoctors();
+    public List<Doctor> getAllDoctors()
+    { return doctorService.getAllDoctors(); }
+
+    //getSpecific dr +appointements
+
+
+    @RequestMapping("/doctor/login")
+    public Doctor logDoctor(@PathVariable String id){
+        //find doctor by id, fake insecured login
+        return doctorService.getDoctor(id);
     }
 
-
-    @RequestMapping("/doctors/{id}")
-    public Doctor getDoctor(@PathVariable String id){
-        return doctorService.getDoctor(id);
+    @RequestMapping(method = RequestMethod.POST, value = "/doctor/register")
+    public void registerDoctor(@RequestBody Doctor doctor){
+         doctorService.addDoctor(doctor);
     }
 }
