@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Patient {
@@ -12,8 +13,13 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String patientId;
+
+    @NotEmpty
     private String patientName;
+
+    @NotEmpty
     private String patientPassword;
+
     private String diagnosis;
 
     public Patient() {

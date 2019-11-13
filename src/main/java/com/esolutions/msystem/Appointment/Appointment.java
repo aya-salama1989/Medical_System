@@ -1,10 +1,9 @@
 package com.esolutions.msystem.Appointment;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.esolutions.msystem.doctor.Doctor;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -13,7 +12,9 @@ public class Appointment implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String patientId;
-    private String doctorId;
+
+    @ManyToOne
+    private Doctor doctor;
     private String startDate;
     private String endDate;
     private boolean valid;
@@ -22,10 +23,10 @@ public class Appointment implements Serializable {
     public Appointment(){
 
     }
-    public Appointment(String id, String patientId, String doctorId, String startDate, String endDate, boolean valid) {
+    public Appointment(String id, String patientId, Doctor doctor, String startDate, String endDate, boolean valid) {
         this.id = id;
         this.patientId = patientId;
-        this.doctorId = doctorId;
+        this.doctor = doctor;
         this.startDate = startDate;
         this.endDate = endDate;
         this.valid = valid;
@@ -47,12 +48,12 @@ public class Appointment implements Serializable {
         this.patientId = patientId;
     }
 
-    public String getDoctorId() {
-        return doctorId;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setDoctorId(String doctorId) {
-        this.doctorId = doctorId;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
     public String getStartDate() {

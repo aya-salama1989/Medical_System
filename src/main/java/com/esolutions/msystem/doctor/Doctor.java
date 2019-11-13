@@ -4,6 +4,7 @@ package com.esolutions.msystem.doctor;
 import com.esolutions.msystem.Appointment.Appointment;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 
@@ -13,11 +14,17 @@ public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String doctorId;
+
+    @NotEmpty
     private String doctorName;
+
+    @NotEmpty
     private String password;
+
+    @NotEmpty
     private String specialization;
 
-    @ManyToMany
+    @OneToMany
     private List<Appointment> validDates;
 
     public Doctor() {

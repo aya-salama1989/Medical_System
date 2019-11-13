@@ -15,11 +15,11 @@ public class DoctorService {
     @Autowired
     DoctorRepository doctorRepository;
 
-    private List<Appointment> appointments = Arrays.asList(new Appointment("ss", "1","1","1","2", true));
-
-    private List<Doctor> doctorsList = Arrays.asList(new Doctor("1", "Abbass", "123", "radiology", appointments),
-            new Doctor("2", "Fernass", "123", "dermatology", appointments),
-            new Doctor("3", "Abbass ibn fernass", "123", "gastro", appointments));
+//    private List<Appointment> appointments = Arrays.asList(new Appointment("ss", "1","1","1","2", true));
+//
+//    private List<Doctor> doctorsList = Arrays.asList(new Doctor("1", "Abbass", "123", "radiology", appointments),
+//            new Doctor("2", "Fernass", "123", "dermatology", appointments),
+//            new Doctor("3", "Abbass ibn fernass", "123", "gastro", appointments));
 
     public List<Doctor> getAllDoctors(){
         List<Doctor> doctors = new ArrayList<>();
@@ -29,7 +29,7 @@ public class DoctorService {
 
     public Doctor getDoctor(String id){
         //get doctor by name or id
-        return doctorsList.stream().filter(doctor -> doctor.getDoctorId().equals(id)).findAny().get();
+        return doctorRepository.findById(id).get();
     }
 
     public void addDoctor(Doctor doctor){
