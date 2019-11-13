@@ -1,4 +1,4 @@
-package com.esolutions.msystem.Appointment;
+package com.esolutions.msystem.appointment;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

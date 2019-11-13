@@ -1,33 +1,29 @@
 package com.esolutions.msystem.doctor;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.Doc;
 import java.util.List;
 
 @RestController
+//@RequestMapping("/api/doctors")
 public class DoctorController {
 
     @Autowired
-    DoctorService doctorService;
-
-    @RequestMapping("/doctors")
-    public List<Doctor> getAllDoctors()
-    { return doctorService.getAllDoctors(); }
-
-    //getSpecific dr +appointements
+    private ObjectMapper objectMapper;
 
 
-    @RequestMapping("/doctor/login")
-    public Doctor logDoctor(@PathVariable String id){
-        //find doctor by id, fake insecured login
-        return doctorService.getDoctor(id);
-    }
+//    @RequestMapping("/doctor/login")
+//    public Doctor logDoctor(@PathVariable String id) {
+//        //find doctor by id, fake insecured login
+//        return doctorService.getDoctor(id);
+//    }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/doctor/register")
-    public void registerDoctor(@RequestBody Doctor doctor){
-         doctorService.addDoctor(doctor);
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Doctor add(@RequestBody Doctor doctor) throws Exception {
+        return doctor;
     }
 }

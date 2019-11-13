@@ -1,4 +1,4 @@
-package com.esolutions.msystem.Patient;
+package com.esolutions.msystem.patient;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +14,9 @@ public class PatientService {
     PatientRepository patientRepository;
 
 
-    private List<Patient> patientList = Arrays.asList(new Patient("1", "Abbass", "123", "3yan"),
-            new Patient("2", "Fernass", "123", "3yan awee"),
-            new Patient("3", "Abbass ibn fernass", "123", "3yan gedan"));
+//    private List<Patient> patientList = Arrays.asList(new Patient("1", "Abbass", "123", "3yan"),
+//            new Patient("2", "Fernass", "123", "3yan awee"),
+//            new Patient("3", "Abbass ibn fernass", "123", "3yan gedan"));
 
     public void addPatient(Patient patient){
         patientRepository.save(patient);

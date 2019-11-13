@@ -1,82 +1,36 @@
 package com.esolutions.msystem.doctor;
 
 
-import com.esolutions.msystem.Appointment.Appointment;
+import com.esolutions.msystem.appointment.Appointment;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-
+@Getter
+@Setter
+@Accessors(chain = true)
 @Entity
 public class Doctor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String doctorId;
-
+    private Long doctorId;
     @NotEmpty
     private String doctorName;
-
     @NotEmpty
     private String password;
-
     @NotEmpty
     private String specialization;
+    @JsonIgnore
+    @OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY)
+    private Set<Appointment> validDates = new HashSet<>();
 
-    @OneToMany
-    private List<Appointment> validDates;
-
-    public Doctor() {
-    }
-
-    public Doctor(String doctorId, String doctorName, String password, String specialization, List<Appointment> validDates) {
-        this.doctorId = doctorId;
-        this.doctorName = doctorName;
-        this.password = password;
-        this.specialization = specialization;
-        this.validDates = validDates;
-    }
-
-
-    public String getDoctorId() {
-        return doctorId;
-    }
-
-    public void setDoctorId(String doctorId) {
-        this.doctorId = doctorId;
-    }
-
-    public String getDoctorName() {
-        return doctorName;
-    }
-
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public List<Appointment> getValidDates() {
-        return validDates;
-    }
-
-    public void setValidDates(List<Appointment> validDates) {
-        this.validDates = validDates;
-    }
-
-    public String getSpecialization() {
-        return specialization;
-    }
-
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
-    }
 }
 

@@ -1,4 +1,4 @@
-package com.esolutions.msystem.Patient;
+package com.esolutions.msystem.patient;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

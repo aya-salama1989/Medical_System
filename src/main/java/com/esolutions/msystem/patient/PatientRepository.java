@@ -1,4 +1,4 @@
-package com.esolutions.msystem.Patient;
+package com.esolutions.msystem.patient;
 
 import org.springframework.data.repository.CrudRepository;
 
