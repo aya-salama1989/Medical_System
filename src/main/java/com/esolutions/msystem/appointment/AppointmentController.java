@@ -12,15 +12,10 @@ public class AppointmentController {
     @Autowired
     private AppointmentService appointmentService;
 
-    @GetMapping
-    public Iterable<Appointment> getAll() {
-        return appointmentService.all();
-    }
 
     @PostMapping
     public Appointment add(@RequestBody Appointment appointment) {
         return appointmentService.addAppoinement(appointment);
     }
-
 
 }

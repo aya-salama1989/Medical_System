@@ -1,7 +1,6 @@
 package com.esolutions.msystem.appointment;
 
 
-import com.esolutions.msystem.patient.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +13,15 @@ public class AppointmentService {
 
     public Appointment addAppoinement(Appointment appointment) {
         return appointmentRepository.save(appointment);
+    }
+
+    public Appointment book(Appointment appointment) {
+        Appointment app = appointmentRepository.findById(appointment.getId()).get();
+        if (app.isValid() && app.getPatient() != null) {
+            return appointmentRepository.save(appointment);
+        } else {
+            return app;
+        }
     }
 
 
